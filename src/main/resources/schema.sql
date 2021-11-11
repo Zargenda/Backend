@@ -1,8 +1,8 @@
-CREATE TABLE employee
+CREATE TABLE test
 (
- employeeName varchar(100) NOT NULL,
-  employeeId varchar(11) NOT NULL ,
- employeeAddress varchar(100) DEFAULT NULL,
- employeeEmail varchar(100) DEFAULT NULL,
- PRIMARY KEY (employeeId)
+ testName varchar(100) NOT NULL,
+  testId varchar(11) NOT NULL ,
+ testAddress varchar(100) DEFAULT NULL,
+ testEmail varchar(100) DEFAULT NULL,
+ PRIMARY KEY (testId)
 );
