@@ -1,4 +1,4 @@
-package model;
+package com.backend.Backend.model;
 
 
 import javax.persistence.*;
@@ -15,13 +15,12 @@ public class Asignatura {
 	
 	private @Id Long id;
 	private String nombre;
-	/*private Long codArea;
+	private Long codArea;
 	private Long codPlan;
 	private int grupo; 
 	private int curso;
 	private int semestre;
-	private String prueba;
-	*/
+
 	public Asignatura(Long id) {
 		this.id = id;
 	}

@@ -1,33 +1,32 @@
-package repository;
+package com.backend.Backend.repository;
 import java.util.List;
 import java.util.Optional;
 
+import com.backend.Backend.model.Asignatura;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import model.Asignatura;
 
 @Service
 public class AsignaturaService {
 	
 	@Autowired
-	private AsignaturaRepository personaResporitory;
+	private AsignaturaRepository asignaturaRepository;
 	
 	
-	public Asignatura create (Asignatura persona) {
-		return personaResporitory.save(persona);
+	public Asignatura create (Asignatura asignatura) {
+		return asignaturaRepository.save(asignatura);
 	}
 	
 	public List<Asignatura> getAllPersonas (){
-		return personaResporitory.findAll();
+		return asignaturaRepository.findAll();
 	}
 	
 	public void delete (Asignatura persona) {
-		personaResporitory.delete(persona);
+		asignaturaRepository.delete(persona);
 	}
 	
 	public Optional<Asignatura> findById (Long id) {
-		return personaResporitory.findById(id);
+		return asignaturaRepository.findById(id);
 	}
 	
 

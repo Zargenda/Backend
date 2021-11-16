@@ -1,8 +1,12 @@
-CREATE TABLE test
+
+CREATE TABLE asignatura
 (
- testName varchar(100) NOT NULL,
-  testId varchar(11) NOT NULL ,
- testAddress varchar(100) DEFAULT NULL,
- testEmail varchar(100) DEFAULT NULL,
- PRIMARY KEY (testId)
+    id integer NOT NULL,
+    nombre varchar(100),
+    cod_area integer,
+    cod_plan integer,
+    grupo integer,
+    curso varchar(2),
+    semestre varchar(2),
+    PRIMARY KEY (id)
 );
