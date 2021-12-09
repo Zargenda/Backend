@@ -17,12 +17,12 @@ public class AsignaturaService {
 		return asignaturaRepository.save(asignatura);
 	}
 	
-	public List<Asignatura> getAllPersonas (){
+	public List<Asignatura> getAllAsignaturas (){
 		return asignaturaRepository.findAll();
 	}
 	
-	public void delete (Asignatura persona) {
-		asignaturaRepository.delete(persona);
+	public void delete (Asignatura asignatura) {
+		asignaturaRepository.delete(asignatura);
 	}
 	
 	public Optional<Asignatura> findById (Long id) {
