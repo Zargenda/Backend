@@ -1,7 +1,12 @@
 package com.backend.Backend.model;
-import javax.persistence.*;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 @Entity
 @Getter @Setter @NoArgsConstructor @ToString
 public class Aula {

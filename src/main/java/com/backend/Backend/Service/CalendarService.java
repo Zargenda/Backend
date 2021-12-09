@@ -1,11 +1,9 @@
-package com.backend.Backend.repository;
+package com.backend.Backend.Service;
 
-import com.backend.Backend.model.Asignatura;
 import com.backend.Backend.model.Calendario;
+import com.backend.Backend.repository.CalendarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CalendarService {

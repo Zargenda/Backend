@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 
-import com.backend.Backend.model.SQLCalendar.*;
-
 @RestController
 public class CalendarioController {
 

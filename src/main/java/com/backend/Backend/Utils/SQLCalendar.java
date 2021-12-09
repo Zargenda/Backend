@@ -1,11 +1,11 @@
-package com.backend.Backend.model;
+package com.backend.Backend.Utils;
 
-import com.backend.Backend.repository.CalendarService;
+import com.backend.Backend.Service.CalendarService;
+import com.backend.Backend.model.Calendario;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -22,8 +22,6 @@ public class SQLCalendar {
 
     private void genCalendaraux(String date1Ini, String date1Fin) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        ArrayList<Calendario> calendario = new ArrayList<Calendario>();
-        Boolean star_week = true;
         Calendar start = Calendar.getInstance();
         start.setTime(sdf.parse(date1Ini));
         Calendar end = Calendar.getInstance();
@@ -38,7 +36,7 @@ public class SQLCalendar {
             if (aux.getDay().equals("Sun") || aux.getDate().equals("Sat")) {
                 aux.setType("FESTIVE");
                 if (aux.getDate().equals("Sun")) {
-                    if (abweek == "" || abweek == "b") {
+                    if (abweek.equals("") || abweek.equals("b")) {
                         number_of_week++;
                         abweek = "a";
                     } else {
@@ -48,13 +46,13 @@ public class SQLCalendar {
                 aux.setWeek("");
             } else {
                 aux.setType("SCHOOL");
-                aux.setWeek(abweek + Integer.toString(number_of_week));
+                aux.setWeek(abweek + (number_of_week));
 
             }
             calendarService.create(aux);
         }
     }
-    private static String GetDay(Date date) throws ParseException {
+    private static String GetDay(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         sdf.applyPattern("EEE");
         return sdf.format(date);

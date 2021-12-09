@@ -1,15 +1,15 @@
-package com.backend.Backend.model;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.Cell;
+package com.backend.Backend.Utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Iterator;
-import org.apache.poi.ss.usermodel.Workbook;
+import com.backend.Backend.model.Asignatura;
+import com.backend.Backend.model.Aula;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
-import javax.persistence.Id;
+import java.io.File;
+import java.util.Iterator;
 
 
 public class ExcelReader {
@@ -72,7 +72,7 @@ public class ExcelReader {
             Row row = rowIterator.next();
             while (rowIterator.hasNext() )
             {
-                String acronimo = "";
+                String acronimo= "";
                 Long id = 0L;
                 if( row.getCell(0).getCellType() == CellType.STRING){
                     break;
@@ -90,9 +90,9 @@ public class ExcelReader {
                 String nombre = row.getCell(2).getStringCellValue();
                 int capacidad = (int) row.getCell(3).getNumericCellValue();
                 int edificio =  (int) row.getCell(4).getNumericCellValue();
-                String observaciones = row.getCell(5).getStringCellValue();;
+                String observaciones = row.getCell(5).getStringCellValue();
                 Aula aula = new Aula(id,acronimo,nombre,capacidad,edificio,observaciones);
-                System.out.println(aula.toString());
+                System.out.println(aula);
                 row = rowIterator.next();
 
 

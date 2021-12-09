@@ -1,7 +1,7 @@
-package com.backend.Backend.repository;
+package com.backend.Backend.Service;
 
-import com.backend.Backend.model.Asignatura;
 import com.backend.Backend.model.Aula;
+import com.backend.Backend.repository.AulaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
