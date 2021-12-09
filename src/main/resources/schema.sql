@@ -1,5 +1,5 @@
 
-CREATE TABLE asignatura
+CREATE TABLE IF NOT EXISTS asignatura
 (
     id integer NOT NULL,
     nombre varchar(100),
@@ -9,4 +9,13 @@ CREATE TABLE asignatura
     curso varchar(2),
     semestre varchar(2),
     PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS calendario (
+  date VARCHAR(255) NOT NULL,
+  type VARCHAR(255),
+  day VARCHAR(255),
+  week VARCHAR(255),
+  comment VARCHAR(255),
+  CONSTRAINT pk_calendario PRIMARY KEY (date)
 );
