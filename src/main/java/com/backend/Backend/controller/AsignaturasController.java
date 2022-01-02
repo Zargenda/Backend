@@ -26,8 +26,8 @@ public class AsignaturasController {
 
 	@PostMapping("/upload")
 	public String  prueba2(@RequestParam("file") MultipartFile file){
-		ExcelReader.leerAulas2(file);
-		return "EXITIO";
+		ExcelReader.leerAsignaturas2(file);
+		return "EXITO";
 	}
 
 

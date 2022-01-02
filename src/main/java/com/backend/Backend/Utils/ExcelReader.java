@@ -59,6 +59,44 @@ public class ExcelReader {
         }
     }
 
+    public static void leerAsignaturas2(MultipartFile file) {
+        try
+        {
+            int[] posicionesColumnas ={3,4,6,11,17,18,21};
+            Path tempDir = Files.createTempDirectory("");
+            File temFile = tempDir.resolve(file.getOriginalFilename()).toFile();
+            file.transferTo(temFile);
+            //Create Workbook instance holding reference to .xlsx file
+            Workbook workbook =WorkbookFactory.create(temFile);
+            XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);
+
+            //Iterate through each rows one by one
+            Iterator<Row> rowIterator = sheet.iterator();
+            rowIterator.next();
+            rowIterator.next();
+            rowIterator.next();
+            while (rowIterator.hasNext())
+            {
+                Row row = rowIterator.next();
+                Long id = (long) row.getCell(posicionesColumnas[0]).getNumericCellValue();
+                String nombre = row.getCell(posicionesColumnas[1]).getStringCellValue();
+                Long codArea = Long.valueOf(row.getCell(posicionesColumnas[2]).getStringCellValue());
+                Long codPlan = (long) row.getCell(posicionesColumnas[3]).getNumericCellValue();
+                int curso = Integer.valueOf(row.getCell(posicionesColumnas[4]).getStringCellValue());
+                String semestre = row.getCell(posicionesColumnas[5]).getStringCellValue();
+                Asignatura asign = new Asignatura(id,nombre,codArea,codPlan,0,curso,semestre);
+                System.out.println(asign.toString());
+
+
+
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void leerAulas() {
         try
