@@ -17,6 +17,7 @@ public class Aula {
     private int edificio;
     private String observaciones;
 
+
     public Aula(Long id, String acronimo, String nombre, int capacidad, int edificio, String observaciones) {
         this.id = id;
         this.acronimo = acronimo;
@@ -24,5 +25,6 @@ public class Aula {
         this.capacidad = capacidad;
         this.edificio = edificio;
         this.observaciones = observaciones;
+
     }
 }
