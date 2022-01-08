@@ -25,14 +25,14 @@ public class mockController {
             return planes;
         }
         @GetMapping("/getInfoPlan")
-        public Map<Integer,String[]> infoPlan(@RequestParam("plan") String plan ){
-            Map<Integer, String[]> result = new HashMap<Integer,String[]>();
+        public Map<String,String[]> infoPlan(@RequestParam("plan") String plan ){
+            Map<String, String[]> result = new HashMap<String,String[]>();
             String[] semestre = {"S1","S2","S"};
             String[] curso = {"1","2","3","4"};
             String[] grupo = {"1","2","3","4","5"};
-            result.put(1,semestre);
-            result.put(2,curso);
-            result.put(3,grupo);
+            result.put("Semester",semestre);
+            result.put("Grade",curso);
+            result.put("Group",grupo);
             return result;
         }
 
