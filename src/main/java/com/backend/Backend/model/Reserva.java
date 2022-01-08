@@ -18,8 +18,8 @@ import java.util.Date;
 @Table(name = "Reservas")
 public class Reserva {
 
-
     private @Id long id;
     private Date fecha;
     private int hora;
+    private Long aulaId;
 }
