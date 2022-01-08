@@ -12,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/mock")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class mockController {
 
         @PostMapping("/upload")
