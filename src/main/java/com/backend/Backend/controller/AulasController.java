@@ -12,7 +12,7 @@ import java.sql.Date;
 public class AulasController {
     @PostMapping("/uploadAula")
     public String  prueba2(@RequestParam("file") MultipartFile file){
-        ExcelReader.leerAulas2(file);
+        ExcelReader.leerAulas(file);
         return "EXITO";
     }
     @PostMapping("/reservar")

@@ -8,8 +8,47 @@ CREATE TABLE IF NOT EXISTS asignatura
     grupo integer,
     curso varchar(2),
     semestre varchar(2),
+    horaSemanales integer,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS aula
+(
+    id integer NOT NULL,
+    acronimo varchar(100),
+    nombre varchar(100),
+    capacidad integer,
+    edificio integer,
+    observaciones varchar(200),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS conflicto(
+    id integer NOT NULL,
+    descripcion varchar(200),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS reserva(
+    id integer NOT NULL,
+    fecha DATE,
+    hora integer,
+    aulaId integer,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS horarioAsignatura(
+    id integer NOT NULL,
+    subject varchar(200),
+    startTime varchar(200),
+    endTime varchar (200),
+    calendarId integer,
+    description varchar(200),
+    frecuency varchar(200),
+    PRIMARY KEY(id)
+);
+
+
 
 CREATE TABLE IF NOT EXISTS calendario (
   date VARCHAR(255) NOT NULL,

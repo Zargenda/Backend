@@ -5,9 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,10 +16,16 @@ import javax.persistence.Table;
 @Table(name = "Horario")
 public class HorarioAsignatura {
     private @Id Long id;
-    private Long asignaturaId ; //  Asignatura
-    private Long planId; //El plan al que pertenece
-    private int hora; // horario de la universidad
-    private int diaSemana;// Dias de la semana
-    private String tipo; //Practicas teoria problemas
-    private Long aulaId; //Opcional
+    private String subject; //  Asignatura
+    @Column
+    @Convert(converter = ListIntToString.class)
+    private List<Integer> startTime; //El plan al que pertenece
+
+    @Column
+    @Convert(converter = ListIntToString.class)
+    private List<Integer> endTime; // horario de la universidad
+
+    private int  calendarId;// tipo
+    private String description; //aulas
+    private String frecuency; //Semanal
 }

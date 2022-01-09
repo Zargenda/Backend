@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AsignaturaService {
+public class AsignaturaService  {
 	
 	@Autowired
 	private AsignaturaRepository asignaturaRepository;
@@ -28,6 +28,10 @@ public class AsignaturaService {
 	
 	public Optional<Asignatura> findById (Long id) {
 		return asignaturaRepository.findById(id);
+	}
+
+	public int getWeeklyHours (Long id){
+		return asignaturaRepository.findById(id).get().getHoraSemanales();
 	}
 
 }

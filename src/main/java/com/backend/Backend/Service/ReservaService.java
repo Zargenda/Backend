@@ -15,6 +15,7 @@ public class ReservaService {
     private ReservasRepository reservaRepository;
 
     public Reserva create (Reserva reserva) {
+        //Comprobar conflictos
         return reservaRepository.save(reserva);
     }
 

@@ -13,7 +13,6 @@ public class ConflictoService {
     @Autowired
     private ConflictoRepository conflictoRepository;
 
-
     public Conflictos create (Conflictos conflictos) {
         return conflictoRepository.save(conflictos);
     }
@@ -30,4 +29,3 @@ public class ConflictoService {
         return conflictoRepository.findById(id);
     }
 }
-
