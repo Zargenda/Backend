@@ -3,6 +3,7 @@ package com.backend.Backend.controller;
 import com.backend.Backend.Service.HorarioService;
 import com.backend.Backend.Utils.ExcelReader;
 import com.backend.Backend.model.HorarioAsignatura;
+import com.backend.Backend.repository.AsignaturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,17 +16,22 @@ import java.util.Map;
 @RequestMapping("/mock")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class mockController {
+    @Autowired
+    AsignaturaRepository asignaturaRepository;
 
         @PostMapping("/upload")
-        public String uploadMock(@RequestParam("file") MultipartFile file){
-            ExcelReader.leerAsignaturas(file);
+        public String uploadMock(){
+           asignaturaRepository.saveAll(ExcelReader.leerAsignaturas());
+
             return "EXITO";
         }
-        @GetMapping("/getPlanes")
+        @GetMapping("/getDistinc")
         public  String[] getPlanes(){
             String[] planes = {"informatica","tumama","mamawebo","Tecnologia"};
             return planes;
         }
+
+
         @GetMapping("/getInfoPlan")
         public Map<String,String[]> infoPlan(@RequestParam("plan") String plan ){
             Map<String, String[]> result = new HashMap<String,String[]>();
@@ -42,6 +48,7 @@ public class mockController {
     public String[] getAsignaturas(@RequestParam("semestre") String semestre,@RequestParam("grupo") String grupo,
                                    @RequestParam("curso") String curso){
         String[] result = {"Bailar","Canto","Yone","Si AMIGO"};
+
         return result;
     }
 
@@ -54,4 +61,8 @@ public class mockController {
     }
 
 
+
 }
+
+
+

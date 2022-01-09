@@ -18,7 +18,7 @@ public class Asignatura {
 	private @Id Long id;
 	private String nombre;
 	private Long codArea;
-	private String nombreArea;
+	private String nombrePlan;
 	private Long codPlan;
 	private int grupo; 
 	private int curso;
@@ -31,7 +31,7 @@ public class Asignatura {
 	}
 
 	public Asignatura(Long id, String nombre, Long codArea, Long codPlan, int grupo, int curso, String semestre
-			,int horaSemanales,String nombreArea) {
+			,int horaSemanales,String nombrePlan) {
 		this.id = id;
 		this.nombre = nombre;
 		this.codArea = codArea;
@@ -40,7 +40,7 @@ public class Asignatura {
 		this.curso = curso;
 		this.semestre = semestre;
 		this.horaSemanales = horaSemanales;
-		this.nombreArea = nombreArea;
+		this.nombrePlan = nombrePlan;
 	}
 	//Completar cuando se hagan las tablas
 }

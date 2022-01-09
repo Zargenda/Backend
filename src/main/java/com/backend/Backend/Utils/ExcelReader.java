@@ -2,36 +2,45 @@ package com.backend.Backend.Utils;
 
 import com.backend.Backend.model.Asignatura;
 import com.backend.Backend.model.Aula;
+import com.backend.Backend.repository.AsignaturaRepository;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 
 
 public class ExcelReader {
 
+
     private static final String FILE_NAME = "com/backend/Backend/listado207.xlsx";
-    public static void main(String[] args) {
+    public static  void main(String[] args) {
+
         leerAsignaturas();
+
     }
-    private static final int[] POSICIONES_COLUMNAS = {3,4,6,11,17,18,23,5,30,7} ;
-    public static void leerAsignaturas() {
+    private static final int[] POSICIONES_COLUMNAS = {3,4,6,11,17,18,23,5,30,12} ;
+    public static List<Asignatura>  leerAsignaturas() {
         try
         {
-            int[] posicionesColumnas ={3,4,6,11,17,18,23,5,30,7};
+
+
             File file = new File("listado207.xlsx");
             System.out.println(file.getAbsolutePath());
             //Create Workbook instance holding reference to .xlsx file
             Workbook workbook =WorkbookFactory.create(file);
             XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);
-            leerSheetAsignaturas(sheet);
+            return leerSheetAsignaturas(sheet);
 
 
         }
@@ -39,12 +48,13 @@ public class ExcelReader {
         {
             e.printStackTrace();
         }
+        return null;
     }
 
-    public static void leerAsignaturas(MultipartFile file) {
+    public static  void leerAsignaturas(MultipartFile file) {
         try
         {
-            int[] posicionesColumnas ={3,4,6,11,17,18,24,5,30};
+
             Path tempDir = Files.createTempDirectory("");
             File temFile = tempDir.resolve(file.getOriginalFilename()).toFile();
             file.transferTo(temFile);
@@ -60,10 +70,9 @@ public class ExcelReader {
         }
     }
 
-    private static void leerSheetAsignaturas(XSSFSheet sheet){
+    private static List<Asignatura> leerSheetAsignaturas(XSSFSheet sheet){
         //Create Workbook instance holding reference to .xlsx file
-
-
+        List<Asignatura> result = new ArrayList<>();
         //Iterate through each rows one by one
         Iterator<Row> rowIterator = sheet.iterator();
         rowIterator.next();
@@ -84,10 +93,10 @@ public class ExcelReader {
             String nombreArea = row.getCell(POSICIONES_COLUMNAS[9]).getStringCellValue();
             int horasPorSemana = (numAreas * horas) / 12;
             if(horasPorSemana == 0){
-                horasPorSemana = 1;
+                //horasPorSemana = 1;
             }
-            Asignatura asign = new Asignatura(id,nombre,codArea,codPlan,grupos,curso,semestre,horasPorSemana,nombreArea);
-
+            Asignatura asign = new Asignatura(id,nombre,codArea,codPlan,grupos,curso,semestre.toUpperCase(Locale.ROOT),horasPorSemana,nombreArea);
+            result.add(asign);
             //int pageCount = (  (horas* numAreas) - 1) / 12 + 1; Redondeo a la alta
 
             System.out.println(asign);
@@ -95,6 +104,7 @@ public class ExcelReader {
 
 
         }
+        return result;
     }
 
 
