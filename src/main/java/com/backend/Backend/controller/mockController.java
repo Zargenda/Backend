@@ -1,6 +1,7 @@
 package com.backend.Backend.controller;
 
 import com.backend.Backend.Service.HorarioService;
+import com.backend.Backend.Utils.ExcelReader;
 import com.backend.Backend.model.HorarioAsignatura;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ public class mockController {
 
         @PostMapping("/upload")
         public String uploadMock(@RequestParam("file") MultipartFile file){
+            ExcelReader.leerAsignaturas(file);
             return "EXITO";
         }
         @GetMapping("/getPlanes")
@@ -37,11 +39,19 @@ public class mockController {
         }
 
     @GetMapping("/getAsignaturasPlan")
-    public String[] getAsignaturas(@RequestParam("plan") String plan ){
+    public String[] getAsignaturas(@RequestParam("semestre") String semestre,@RequestParam("grupo") String grupo,
+                                   @RequestParam("curso") String curso){
         String[] result = {"Bailar","Canto","Yone","Si AMIGO"};
         return result;
     }
 
+    @PostMapping("/uploadHorarios")
+    public List<HorarioAsignatura> uploadHorarios(@RequestBody List<HorarioAsignatura> horarios ){
+        for(HorarioAsignatura ho : horarios){
+            System.out.println(ho);
+        }
+        return horarios;
+    }
 
 
 }

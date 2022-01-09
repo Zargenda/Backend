@@ -6,6 +6,8 @@ import com.backend.Backend.model.HorarioAsignatura;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/horarios")
 public class HorarioController {

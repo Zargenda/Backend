@@ -1,4 +1,4 @@
-package com.backend.Backend.model;
+package com.backend.Backend.Utils;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

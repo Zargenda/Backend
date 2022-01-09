@@ -1,6 +1,7 @@
 package com.backend.Backend.Service;
 
-import com.backend.Backend.model.Conflictos;
+
+import com.backend.Backend.model.Conflicto;
 import com.backend.Backend.repository.ConflictoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,19 +14,19 @@ public class ConflictoService {
     @Autowired
     private ConflictoRepository conflictoRepository;
 
-    public Conflictos create (Conflictos conflictos) {
-        return conflictoRepository.save(conflictos);
+    public Conflicto create (Conflicto conflicto) {
+        return conflictoRepository.save(conflicto);
     }
 
-    public List<Conflictos> getAllConflictos (){
+    public List<Conflicto> getAllConflictos (){
         return conflictoRepository.findAll();
     }
 
-    public void delete (Conflictos conflicto) {
+    public void delete (Conflicto conflicto) {
         conflictoRepository.delete(conflicto);
     }
 
-    public Optional<Conflictos> findById (Long id) {
+    public Optional<Conflicto> findById (Long id) {
         return conflictoRepository.findById(id);
     }
 }

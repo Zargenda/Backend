@@ -15,7 +15,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @ToString
-@Table(name = "Reservas")
+@Table(name = "Reserva")
 public class Reserva {
 
     private @Id long id;
