@@ -26,7 +26,7 @@ public class HorarioService {
         if(weeklyHours < hAsignatura.getHora().size()){
             System.out.println("DEMASIADAS HORAS");
         }
-    */
+        */
         return horarioRepository.save(hAsignatura);
     }
 

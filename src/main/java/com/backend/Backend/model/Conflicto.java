@@ -14,8 +14,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
-@Table(name = "Conflictos")
-public class Conflictos {
+@Table(name = "Conflicto")
+public class Conflicto {
     private @Id Long id;
     private String descripcion;//Este AULA  esta reservada por AsignaturaA y por Asignatura B a estas HORAS
 }
