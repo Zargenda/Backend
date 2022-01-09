@@ -1,12 +1,12 @@
 package com.backend.Backend.controller;
 
+
 import com.backend.Backend.Service.HorarioService;
 import com.backend.Backend.model.HorarioAsignatura;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/horarios")

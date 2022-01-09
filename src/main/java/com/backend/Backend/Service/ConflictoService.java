@@ -1,5 +1,6 @@
 package com.backend.Backend.Service;
 
+
 import com.backend.Backend.model.Conflicto;
 import com.backend.Backend.repository.ConflictoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,3 @@ public class ConflictoService {
         return conflictoRepository.findById(id);
     }
 }
-
-

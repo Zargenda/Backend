@@ -25,6 +25,7 @@ public class Asignatura {
 	private String semestre;
 	private int horaSemanales;
 
+
 	public Asignatura(Long id) {
 		this.id = id;
 	}

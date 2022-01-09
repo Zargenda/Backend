@@ -1,7 +1,6 @@
 package com.backend.Backend.Service;
 
 
-import com.backend.Backend.model.Asignatura;
 import com.backend.Backend.model.HorarioAsignatura;
 import com.backend.Backend.repository.AsignaturaRepository;
 import com.backend.Backend.repository.HorarioRepository;
@@ -33,6 +32,7 @@ public class HorarioService {
     public List<HorarioAsignatura> getAllHorarios (){
         return horarioRepository.findAll();
     }
+
     public List <HorarioAsignatura> getHorariosPlan(Long idPlan){
         return horarioRepository.horarioPlan(idPlan);
     }

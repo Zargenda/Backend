@@ -1,6 +1,5 @@
 package com.backend.Backend.repository;
 
-import com.backend.Backend.model.Asignatura;
 import com.backend.Backend.model.HorarioAsignatura;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
