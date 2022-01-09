@@ -15,7 +15,7 @@ public interface AsignaturaRepository  extends JpaRepository<Asignatura, Long>{
 	@Query(value = "SELECT DISTINCT  FROM Asignatura a WHERE h.planId = :idPlan",  nativeQuery = true)
 	public List<HorarioAsignatura> horarioPlan(@Param("idPlan") Long plan );
 
-	@Query(value = "SELECT DISTINCT  FROM Asignatura a WHERE h.planId = :idPlan",  nativeQuery = true)
+	@Query(value = "SELECT DISTINCT   FROM Asignatura ",  nativeQuery = true)
 	public List<String> areasDisponibles();
 	
 }

@@ -22,5 +22,4 @@ public class HorarioController {
     public List<HorarioAsignatura> getHorario(@RequestParam("planId") Long planId){
         return horarioService.getHorariosPlan(planId);
     }
-
 }

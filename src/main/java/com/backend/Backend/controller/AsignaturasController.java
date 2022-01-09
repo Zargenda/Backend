@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/asignaturas")
@@ -26,6 +28,11 @@ public class AsignaturasController {
 	public String  prueba2(@RequestParam("file") MultipartFile file){
 		ExcelReader.leerAsignaturas(file);
 		return "EXITO";
+	}
+
+	@GetMapping("/getAreas")
+	public List<String> getAreas(){
+
 	}
 
 
