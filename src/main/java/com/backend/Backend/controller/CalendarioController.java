@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 
 @RestController
+@CrossOrigin (origins = "*")
 public class CalendarioController {
 
     @Autowired

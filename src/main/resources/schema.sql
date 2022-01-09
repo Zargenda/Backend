@@ -19,3 +19,12 @@ CREATE TABLE IF NOT EXISTS calendario (
   comment VARCHAR(255),
   CONSTRAINT pk_calendario PRIMARY KEY (date)
 );
+
+CREATE TABLE IF NOT EXISTS usuario
+(
+    id integer NOT NULL,
+    contrasena varchar(100),
+    email varchar(100),
+    admin boolean,
+    PRIMARY KEY (id)
+);

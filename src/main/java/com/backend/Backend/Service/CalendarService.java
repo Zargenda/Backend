@@ -23,6 +23,7 @@ public class CalendarService {
             genCalendaraux(date2Ini, date2Fin);
         }
     }
+
     public Iterable<Calendario> getCalendario (){return calendarRepository.findAll();}
     public void dropCalendario () {calendarRepository.deleteAll();}
 
@@ -32,8 +33,7 @@ public class CalendarService {
             System.out.println("estoy presente");
             Calendario calendario = calendarioOpcional.get();
             if (semana.contains(Day)){
-                String aux = obtainName(Day);
-                calendario.setDay(aux);
+                calendario.setDay(Day);
                 calendario.setWeek(week);
                 calendario.setComment(comment);
                 calendario.setType("CHANGE_DAY");
@@ -86,14 +86,15 @@ public class CalendarService {
         end.setTime(sdf.parse(date1Fin));
         String abweek = "";
         int number_of_week = 0;
+        boolean inicioCuatri = true;
 
         for(Date fechaactual = start.getTime(); start.before(end) || start.equals(end) ; start.add(Calendar.DATE,1),fechaactual=start.getTime()) {
             Calendario aux = new Calendario();
             aux.setDate(sdf.format(fechaactual));
             aux.setDay(GetDay(fechaactual));
-            if (aux.getDay().equals("Sun") || aux.getDay().equals("Sat")) {
+            if (aux.getDay().equals("D") || aux.getDay().equals("S")) {
                 aux.setType("FESTIVE");
-                if (aux.getDay().equals("Sun")) {
+                if (aux.getDay().equals("D")) {
                     if (abweek.equals("") || abweek.equals("b")) {
                         number_of_week++;
                         abweek = "a";
@@ -107,45 +108,27 @@ public class CalendarService {
                 aux.setWeek(abweek + (number_of_week));
 
             }
+            if (inicioCuatri){
+                aux.setComment("INICIO_CUATRIMESTRE");
+                inicioCuatri=false;
+            }
             calendariolista.add(aux);
         }
         calendarRepository.saveAll(calendariolista);
     }
     private static String GetDay(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Locale esLocale = new Locale("es", "ES");//para trabajar en español
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", esLocale);
         sdf.applyPattern("EEE");
-        return sdf.format(date);
-    }
-
-    private static String obtainName(String date){
-        String aux;
-        switch (date){
-            case "MONDAY":
-                aux = "Mon";
-                break;
-            case "TUESDAY":
-                aux = "Tue";
-                break;
-            case "WEDNESDAY":
-                aux = "Wed";
-                break;
-            case "THURSDAY":
-                aux = "Thu";
-                break;
-            case "FRIDAY":
-                aux = "Fri";
-                break;
-            case "SATURDAY":
-                aux = "Sat";
-                break;
-            case "SUNDAY":
-                aux = "Sun";
-                break;
-            default:
-                aux = "error";
-                break;
+        String aux = sdf.format(date);
+        String dayLetter;
+        if (aux.equals("mié.")){
+            dayLetter="X";
+        }else{
+            dayLetter = Character.toUpperCase(aux.charAt(0))+"";
         }
-        return aux;
+
+        return dayLetter;
     }
 
 }
