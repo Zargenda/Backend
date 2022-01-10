@@ -1,6 +1,7 @@
 package com.backend.Backend.model;
 
 import com.backend.Backend.Utils.ListIntToString;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,23 +15,30 @@ import java.util.List;
 @ToString
 public class HorarioAsignatura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("Id")
     private @Id Long Id;
-    private String Subject; //  Asignatura
+    @JsonProperty("Subject")
+    private String subject; //  Asignatura
+    @JsonProperty("StartTime")
     private Date StartTime;
+    @JsonProperty("EndTime")
     private Date EndTime;
+    @JsonProperty("CalendarId")
     private int  CalendarId;// tipo
+    @JsonProperty("Description")
     private String Description; //aulas
+    @JsonProperty("Frecuency")
     private String Frecuency; //Semanal
     private Long idPadre;
 
-    public HorarioAsignatura(Long id, String subject, Date startTime, Date endTime, int calendarId, String description, String frecuency, Long idPadre) {
-        Id = id;
-        Subject = subject;
-        StartTime = startTime;
-        EndTime = endTime;
-        CalendarId = calendarId;
-        Description = description;
-        Frecuency = frecuency;
+    public HorarioAsignatura(Long Id, String Subject, Date StartTime, Date EndTime, int CalendarId, String Description, String Frecuency, Long idPadre) {
+        this.Id = Id;
+        this.subject = Subject;
+        this.StartTime = StartTime;
+        this.EndTime = EndTime;
+        this.CalendarId = CalendarId;
+        this.Description = Description;
+        this.Frecuency = Frecuency;
         this.idPadre = idPadre;
     }
 }
