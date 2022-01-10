@@ -110,7 +110,7 @@ public class ExcelReader {
 
 
 
-    public static void leerAulas() {
+    public static List<Aula> leerAulas() {
         try
         {
             File file = new File("aulas.xlsx");
@@ -118,15 +118,16 @@ public class ExcelReader {
             //Create Workbook instance holding reference to .xlsx file
             Workbook workbook =WorkbookFactory.create(file);
             XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);
-            leerSheetAulas(sheet);
+             return leerSheetAulas(sheet);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+        return null;
     }
 
-    public static void leerAulas(MultipartFile file){
+    public static List<Aula> leerAulas(MultipartFile file){
         try
         {
             Path tempDir = Files.createTempDirectory("");
@@ -135,7 +136,7 @@ public class ExcelReader {
             //Create Workbook instance holding reference to .xlsx file
             Workbook workbook =WorkbookFactory.create(temFile);
             XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);
-            leerSheetAulas(sheet);
+            return leerSheetAulas(sheet);
             //Iterate through each rows one by on
 
 
@@ -145,9 +146,11 @@ public class ExcelReader {
         {
             e.printStackTrace();
         }
+        return null;
     }
 
-    private static void leerSheetAulas(XSSFSheet sheet){
+    private static List<Aula> leerSheetAulas(XSSFSheet sheet){
+        List<Aula> result = new ArrayList<>();
         Iterator<Row> rowIterator = sheet.iterator();
         rowIterator.next();
         Row row = rowIterator.next();
@@ -173,9 +176,10 @@ public class ExcelReader {
             int edificio =  (int) row.getCell(4).getNumericCellValue();
             String observaciones = row.getCell(5).getStringCellValue();;
             Aula aula = new Aula(id,acronimo,nombre,capacidad,edificio,observaciones);
-            System.out.println(aula.toString());
+            result.add(aula);
             row = rowIterator.next();
         }
+        return result;
     }
 
     }

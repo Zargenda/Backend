@@ -4,6 +4,7 @@ import com.backend.Backend.Service.HorarioService;
 import com.backend.Backend.Utils.ExcelReader;
 import com.backend.Backend.model.HorarioAsignatura;
 import com.backend.Backend.repository.AsignaturaRepository;
+import com.backend.Backend.repository.AulaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,13 +19,21 @@ import java.util.Map;
 public class mockController {
     @Autowired
     AsignaturaRepository asignaturaRepository;
-
+    @Autowired
+    AulaRepository aulaRepository;
         @PostMapping("/upload")
         public String uploadMock(){
            asignaturaRepository.saveAll(ExcelReader.leerAsignaturas());
 
             return "EXITO";
         }
+
+        @PostMapping("/uploadAulas")
+        public String uploadMockA(){
+            aulaRepository.saveAll(ExcelReader.leerAulas());
+        return "EXITO";
+    }
+
         @GetMapping("/getDistinc")
         public  String[] getPlanes(){
             String[] planes = {"informatica","tumama","mamawebo","Tecnologia"};
