@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface AulaRepository extends  JpaRepository<Aula,Long> {
     @Query(value = "SELECT a.nombre FROM Aula a  WHERE a.edificio = :edificio",  nativeQuery = true)
-    List<String> getAulasbyEdificio(@Param("edificio") String edificio);
+    List<String> getAulasbyEdificio(@Param("edificio") int edificio);
 }

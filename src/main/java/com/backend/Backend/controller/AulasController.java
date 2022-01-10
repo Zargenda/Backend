@@ -27,7 +27,7 @@ public class AulasController {
     }
 
     @GetMapping("/getAulas")
-    public List<String> getAulas(@RequestParam("edificio") String edificio){
+    public List<String> getAulas(@RequestParam("edificio") int edificio){
         return aulaRepository.getAulasbyEdificio(edificio);
     }
 }
