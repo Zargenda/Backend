@@ -15,11 +15,11 @@ import java.util.List;
 public class HorarioAsignatura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private @Id Long id;
-    private String subject; //  Asignatura
-    private Date startTime;
-    private Date endTime;
-    private int  calendarId;// tipo
-    private String description; //aulas
-    private String frecuency; //Semanal
+    private String Subject; //  Asignatura
+    private Date StartTime;
+    private Date EndTime;
+    private int  CalendarId;// tipo
+    private String Description; //aulas
+    private String Frecuency; //Semanal
     private Long idPadre;
 }

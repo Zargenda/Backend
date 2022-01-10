@@ -19,4 +19,10 @@ public class Horario {
     private String semestre;
     private int grupo;
 
+    public Horario(Long horarioId, int curso, String semestre, int grupo) {
+        this.horarioId = horarioId;
+        this.curso = curso;
+        this.semestre = semestre;
+        this.grupo = grupo;
+    }
 }
