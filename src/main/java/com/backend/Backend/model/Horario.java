@@ -17,12 +17,14 @@ public class Horario {
     private @Id Long horarioId;
     private int curso;
     private String semestre;
+    private String nombrePlan;
     private int grupo;
 
-    public Horario(Long horarioId, int curso, String semestre, int grupo) {
+    public Horario(Long horarioId, int curso, String semestre, int grupo, String nombrePlan) {
         this.horarioId = horarioId;
         this.curso = curso;
         this.semestre = semestre;
         this.grupo = grupo;
+        this.nombrePlan = nombrePlan;
     }
 }

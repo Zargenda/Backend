@@ -14,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/horarios")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class HorarioController {
     @Autowired
     HorarioService horarioService;
@@ -35,9 +36,9 @@ public class HorarioController {
     @PostMapping("/uploadHorarioA")
     public Map<Horario,List<HorarioAsignatura>> prueba(@RequestBody  JsonHorario json) {
         //return horarioService.create(horario);
-        Horario horario = new Horario(0L,json.curso,json.semestre,json.grupo);
+        Horario horario = new Horario(0L,json.curso,json.semestre,json.grupo, json.nombrePlan);
+        System.out.println(json.toString());
         System.out.println(horario);
-        System.out.println(json.horarioAsignaturas);
        // return  horarioService.create(horario,json.horarioAsignaturas);
         return null;
     }
@@ -49,13 +50,28 @@ class JsonHorario{
     int curso;
     String semestre;
     int grupo;
+    String nombrePlan;
+
     List<HorarioAsignatura> horarioAsignaturas = new ArrayList<>();
 
-    public JsonHorario(Long id, int curso, String semestre, int grupo, List<HorarioAsignatura> horarioAsignaturas) {
+    public JsonHorario(Long id, int curso,String nombrePlan, String semestre, int grupo, List<HorarioAsignatura> horarioAsignaturas) {
         this.id = id;
         this.curso = curso;
         this.semestre = semestre;
         this.grupo = grupo;
+        this.nombrePlan = nombrePlan;
         this.horarioAsignaturas = horarioAsignaturas;
+    }
+
+    @Override
+    public String toString() {
+        return "JsonHorario{" +
+                "id=" + id +
+                ", curso=" + curso +
+                ", semestre='" + semestre + '\'' +
+                ", grupo=" + grupo +
+                ", nombrePlan='" + nombrePlan + '\'' +
+                ", horarioAsignaturas=" + horarioAsignaturas +
+                '}';
     }
 }
