@@ -9,18 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/horarios")
 public class HorarioController {
     @Autowired
-    HorarioRepository horarioRepository;
-    @PostMapping("/upload")
-    public Horario nuevoHorario(@RequestBody Horario horario){
+    HorarioService horarioService;
+    @PostMapping("/uploadHorario")
+    public Map<Horario,List<HorarioAsignatura>> nuevoHorario(@RequestBody  Map<Horario,List<HorarioAsignatura>> body) {
        //return horarioService.create(horario);
-        System.out.println(horario.getHorarioAsignaturas());
-        horarioRepository.save(horario);
-        return null;
+
+        Map.Entry<Horario,List<HorarioAsignatura>> entry = body.entrySet().iterator().next();
+        Horario key = entry.getKey();
+        List<HorarioAsignatura> value = entry.getValue();
+        return  horarioService.create(key,value);
     }
     @GetMapping("/getHorario")
     public List<HorarioAsignatura> getHorario(@RequestParam("planId") Long planId){

@@ -8,7 +8,9 @@ import com.backend.Backend.repository.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -18,15 +20,16 @@ public class HorarioService {
     @Autowired
     private HorarioRepository horarioRepository;
 
-    public Horario create (Horario horario) {
+    public Map<Horario,List<HorarioAsignatura>> create (Horario horario,List<HorarioAsignatura> lista) {
         //Guarda horario
+        Map<Horario,List<HorarioAsignatura>> result = new HashMap<>();
         Horario horario1 =  horarioRepository.save(horario);
-        for(HorarioAsignatura asign : horario1.getHorarioAsignaturas()){
-
+        for(HorarioAsignatura asign : lista){
+            asign.setIdPadre(horario1.getHorarioId());
         }
-        List<HorarioAsignatura> lista = horarioAsignaturaRepository.saveAll(horario.getHorarioAsignaturas());
-        horario1.setHorarioAsignaturas(lista);
-        return horario1;
+        lista = horarioAsignaturaRepository.saveAll(lista);
+        result.put(horario,lista);
+        return result;
     }
 
     public List<HorarioAsignatura> getAllHorarios (){

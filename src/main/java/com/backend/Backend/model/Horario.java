@@ -18,6 +18,5 @@ public class Horario {
     private int curso;
     private String semestre;
     private int grupo;
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "horario")
-    private List<HorarioAsignatura> horarioAsignaturas ;
+
 }

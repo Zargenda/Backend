@@ -21,8 +21,5 @@ public class HorarioAsignatura {
     private int  calendarId;// tipo
     private String description; //aulas
     private String frecuency; //Semanal
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="horario_fid", referencedColumnName = "horarioId")
-    private Horario horario;
+    private Long idPadre;
 }
