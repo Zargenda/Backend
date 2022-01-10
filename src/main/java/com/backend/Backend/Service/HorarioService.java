@@ -1,8 +1,9 @@
 package com.backend.Backend.Service;
 
 
+import com.backend.Backend.model.Horario;
 import com.backend.Backend.model.HorarioAsignatura;
-import com.backend.Backend.repository.AsignaturaRepository;
+import com.backend.Backend.repository.HorarioAsignaturaRepository;
 import com.backend.Backend.repository.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,38 +14,37 @@ import java.util.Optional;
 @Service
 public class HorarioService {
     @Autowired
-    private HorarioRepository horarioRepository;
+    private HorarioAsignaturaRepository horarioAsignaturaRepository;
     @Autowired
-    private AsignaturaService asignaturaService;
+    private HorarioRepository horarioRepository;
 
-    public HorarioAsignatura create (HorarioAsignatura hAsignatura) {
-        /*int weeklyHours = asignaturaService.getWeeklyHours(hAsignatura.getAsignaturaId());
-        if(hAsignatura.getAulaId() != 0 ){
-            //Comprobar conflictos con reserva de aulas
+    public Horario create (Horario horario) {
+        //Guarda horario
+        Horario horario1 =  horarioRepository.save(horario);
+        for(HorarioAsignatura asign : horario1.getHorarioAsignaturas()){
+
         }
-        if(weeklyHours < hAsignatura.getHora().size()){
-            System.out.println("DEMASIADAS HORAS");
-        }
-        */
-        return horarioRepository.save(hAsignatura);
+        List<HorarioAsignatura> lista = horarioAsignaturaRepository.saveAll(horario.getHorarioAsignaturas());
+        horario1.setHorarioAsignaturas(lista);
+        return horario1;
     }
 
     public List<HorarioAsignatura> getAllHorarios (){
-        return horarioRepository.findAll();
+        return horarioAsignaturaRepository.findAll();
     }
 
     public List <HorarioAsignatura> getHorariosPlan(Long idPlan){
-        return horarioRepository.horarioPlan(idPlan);
+        return horarioAsignaturaRepository.horarioPlan(idPlan);
     }
     public List <HorarioAsignatura> createHorario(List<HorarioAsignatura> horarioPlan){
-        return horarioRepository.saveAll(horarioPlan);
+        return horarioAsignaturaRepository.saveAll(horarioPlan);
     }
 
     public void delete (HorarioAsignatura hAsignatura) {
-        horarioRepository.delete(hAsignatura);
+        horarioAsignaturaRepository.delete(hAsignatura);
     }
 
     public Optional<HorarioAsignatura> findById (Long id) {
-        return horarioRepository.findById(id);
+        return horarioAsignaturaRepository.findById(id);
     }
 }

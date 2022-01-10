@@ -27,5 +27,4 @@ public class AulasController {
     public List<Aula> getAulas(){
         return aulaRepository.findAll();
     }
-
 }
