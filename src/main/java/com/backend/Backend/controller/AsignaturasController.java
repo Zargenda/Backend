@@ -15,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/asignaturas")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class AsignaturasController {
 
 	@Autowired
@@ -43,14 +44,25 @@ public class AsignaturasController {
 		result.put("Grade",asignaturaRepository.getCursos(nombrePlan));
 		return result;
 	}
-	public List<Integer> getGrupos(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
-								   @RequestParam("curso") int curso){
-		return asignaturaRepository.getGrupos(nombrePlan,semestre,curso);
+	@GetMapping("/getGroups")
+	public List<String> getGrupos(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
+								   @RequestParam("curso") String curso){
+		return asignaturaRepository.getGrupos(nombrePlan,semestre, curso);
+	}
+    @GetMapping("/getSubjects")
+	public List<String> getAsignaturas(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
+									   @RequestParam("curso") String curso ){
+			return asignaturaRepository.getAsignaturas(nombrePlan,semestre,curso);
 	}
 
-	public List<String> getAsignaturas(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
-									   @RequestParam("curso") int curso,@RequestParam("grupo") int grupo  ){
-			return asignaturaRepository.getAsignaturas(nombrePlan,semestre,curso,grupo);
+	@GetMapping("/getGroupsAndSubjects")
+	public Map<String,List<String>> getGroupsAndSubjects(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
+														 @RequestParam("curso") String curso){
+		Map<String,List<String>> result = new HashMap<String, List<String>>();
+		result.put("groups",asignaturaRepository.getGrupos(nombrePlan,semestre,curso));
+		result.put("subjects",asignaturaRepository.getAsignaturas(nombrePlan,semestre,curso));
+		return result;
+
 	}
 
 
