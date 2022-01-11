@@ -6,6 +6,7 @@ import com.backend.Backend.model.HorarioAsignatura;
 import com.backend.Backend.repository.HorarioAsignaturaRepository;
 import com.backend.Backend.repository.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -39,8 +40,8 @@ public class HorarioService {
     public List <HorarioAsignatura> getHorariosPlan(Long idPlan){
         return horarioAsignaturaRepository.horarioPlan(idPlan);
     }
-    public List <HorarioAsignatura> createHorario(List<HorarioAsignatura> horarioPlan){
-        return horarioAsignaturaRepository.saveAll(horarioPlan);
+    public List<HorarioAsignatura> getHorario (String nombre_plan,String semestre,String curso, String grupo){
+        return horarioRepository.getHorarioA(nombre_plan, semestre, curso, grupo);
     }
 
     public void delete (HorarioAsignatura hAsignatura) {

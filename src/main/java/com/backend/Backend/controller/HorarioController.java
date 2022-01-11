@@ -28,9 +28,10 @@ public class HorarioController {
         return  horarioService.create(key,value);
     }
     @GetMapping("/getHorario")
-    public List<HorarioAsignatura> getHorario(@RequestParam("planId") Long planId){
-        //return horarioService.getHorariosPlan(planId);
-        return null;
+    public List<HorarioAsignatura> getHorario(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
+                                              @RequestParam("curso") String curso, @RequestParam("grupo") String grupo ){
+        return horarioService.getHorario(nombrePlan, semestre, curso, grupo);
+        
     }
 
     @PostMapping("/uploadHorarioA")
@@ -39,8 +40,8 @@ public class HorarioController {
         Horario horario = new Horario(0L,json.curso,json.semestre,json.grupo, json.nombrePlan);
         System.out.println(json.toString());
         System.out.println(horario);
-       // return  horarioService.create(horario,json.horarioAsignaturas);
-        return null;
+        return  horarioService.create(horario,json.horarioAsignaturas);
+
     }
 
 }
