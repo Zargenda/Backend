@@ -16,4 +16,6 @@ public interface HorarioAsignaturaRepository extends JpaRepository<HorarioAsigna
             "a.id_padre = h.horario_id AND h.grupo = :grupo   ",nativeQuery = true)
     public List<HorarioAsignatura> getHorarioA(@Param("nombre_plan") String nombre_plan, @Param("semestre")String semestre,
                                                @Param("curso") int curso, @Param("grupo") int grupo );
+    //@Query(value = "DELETE FROM horario_asignatura a WHERE a.id_padre :idPadre ",nativeQuery = true  )
+    public int deleteHorarioAsignaturaByIdPadre(Long idPadre);
 }

@@ -8,6 +8,7 @@ import com.backend.Backend.repository.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class HorarioService {
     @Autowired
     private HorarioAsignaturaRepository horarioAsignaturaRepository;
@@ -31,6 +33,13 @@ public class HorarioService {
         lista = horarioAsignaturaRepository.saveAll(lista);
         result.put(horario,lista);
         return result;
+    }
+
+    public List<HorarioAsignatura> onUpdate(List<HorarioAsignatura> asigns,Long idPadre){
+           if(horarioAsignaturaRepository.deleteHorarioAsignaturaByIdPadre(idPadre) > 0 ) {
+               return horarioAsignaturaRepository.saveAll(asigns);
+           }
+          return null;
     }
 
     public List<HorarioAsignatura> getAllHorarios (){

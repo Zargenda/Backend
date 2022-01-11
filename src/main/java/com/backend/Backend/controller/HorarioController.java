@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,13 +37,21 @@ public class HorarioController {
 
     @PostMapping("/uploadHorarioA")
     public Map<Horario,List<HorarioAsignatura>> prueba(@RequestBody  JsonHorario json) {
-        //return horarioService.create(horario);
-        Horario horario = new Horario(0L,json.curso,json.semestre,json.grupo, json.nombrePlan);
-        System.out.println(json.toString());
-        System.out.println(horario);
-        return  horarioService.create(horario,json.horarioAsignaturas);
+        if(json.id != 0){
+            Map<Horario,List<HorarioAsignatura>> result = new HashMap<>();
+            Horario horario = new Horario(json.id,json.curso,json.semestre,json.grupo, json.nombrePlan);
+            result.put(horario,horarioService.onUpdate(json.horarioAsignaturas, json.id));
+            return result;
+        }
+        else {
+            Horario horario = new Horario(0L, json.curso, json.semestre, json.grupo, json.nombrePlan);
+            System.out.println(json.toString());
+            System.out.println(horario);
+            return horarioService.create(horario, json.horarioAsignaturas);
+        }
 
     }
+
 
 }
 
