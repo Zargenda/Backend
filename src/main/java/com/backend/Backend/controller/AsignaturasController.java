@@ -23,14 +23,27 @@ public class AsignaturasController {
 
 
 	@PostMapping("/upload")
-	public String  prueba2(@RequestParam("file") MultipartFile file){
-		//ExcelReader.leerAsignaturas(file);
+	public List<Asignatura>  upload(@RequestParam("file") MultipartFile file){
+		asignaturaRepository.deleteAll();
+		return asignaturaRepository.saveAll(ExcelReader.leerAsignaturas(file)) ;
+	}
+
+	@PostMapping("/delete")
+	public String  prueba3(){
+		asignaturaRepository.deleteAll();
+		//return asignaturaRepository.saveAll(ExcelReader.leerAsignaturas(file)) ;
 		return "EXITO";
 	}
+
 
 	@GetMapping("/getAsignaturas")
 	public List<Asignatura> getAsignaturas(){
 		return asignaturaRepository.findAll();
+	}
+
+	@PostMapping("/updateAsignatura")
+	public Asignatura updateAsignatura(@RequestBody Asignatura asignatura){
+		asignaturaRepository
 	}
 
 	@GetMapping("/getAreas")

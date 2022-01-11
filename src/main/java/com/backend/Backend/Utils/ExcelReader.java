@@ -51,7 +51,7 @@ public class ExcelReader {
         return null;
     }
 
-    public static  void leerAsignaturas(MultipartFile file) {
+    public static  List<Asignatura> leerAsignaturas(MultipartFile file) {
         try
         {
 
@@ -61,13 +61,14 @@ public class ExcelReader {
             //Create Workbook instance holding reference to .xlsx file
             Workbook workbook =WorkbookFactory.create(temFile);
             XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);
-            leerSheetAsignaturas(sheet);
+            return leerSheetAsignaturas(sheet);
             //Iterate through each rows one by one
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+        return null;
     }
 
     private static List<Asignatura> leerSheetAsignaturas(XSSFSheet sheet){

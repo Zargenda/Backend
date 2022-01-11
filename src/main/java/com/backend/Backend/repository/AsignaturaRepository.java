@@ -29,4 +29,8 @@ public interface AsignaturaRepository  extends JpaRepository<Asignatura, Long>{
 			"a.nombre_plan = :nombre_plan AND  a.curso = :curso  AND  a.semestre = :semestre ",nativeQuery = true)
 	public List<String> getAsignaturas(@Param("nombre_plan") String nombre_plan, @Param("semestre")String semestre,
 								   @Param("curso")String curso);
+	public void deleteAll();
+
+
+
 }

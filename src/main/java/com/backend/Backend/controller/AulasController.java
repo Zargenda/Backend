@@ -17,9 +17,9 @@ public class AulasController {
     @Autowired
     AulaRepository aulaRepository;
     @PostMapping("/uploadAula")
-    public String  prueba2(@RequestParam("file") MultipartFile file){
-        ExcelReader.leerAulas(file);
-        return "EXITO";
+    public List<Aula>  prueba2(@RequestParam("file") MultipartFile file){
+        aulaRepository.deleteAll();
+        return aulaRepository.saveAll(ExcelReader.leerAulas(file));
     }
     @GetMapping("/allAulas")
     public List<Aula> allAulas(){
