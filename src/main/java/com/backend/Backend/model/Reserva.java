@@ -19,7 +19,8 @@ import java.util.Date;
 public class Reserva {
 
     private @Id long id;
-    private Date fecha;
-    private int hora;
-    private Long aulaId;
+    private String fecha;
+    private int horainicio;
+    private int horafin;
+    private String aulaId;
 }

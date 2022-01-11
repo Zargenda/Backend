@@ -37,18 +37,6 @@ CREATE TABLE IF NOT EXISTS reserva(
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS horarioAsignatura(
-    id integer NOT NULL,
-    subject varchar(200),
-    startTime varchar(200),
-    endTime varchar (200),
-    calendarId integer,
-    description varchar(200),
-    frecuency varchar(200),
-    PRIMARY KEY(id)
-);
-
-
 
 CREATE TABLE IF NOT EXISTS calendario (
   date VARCHAR(255) NOT NULL,

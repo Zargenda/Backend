@@ -40,8 +40,8 @@ public class HorarioService {
     public List <HorarioAsignatura> getHorariosPlan(Long idPlan){
         return horarioAsignaturaRepository.horarioPlan(idPlan);
     }
-    public List<HorarioAsignatura> getHorario (String nombre_plan,String semestre,String curso, String grupo){
-        return horarioRepository.getHorarioA(nombre_plan, semestre, curso, grupo);
+    public List<HorarioAsignatura> getHorario (String nombre_plan,String semestre,int curso, int grupo){
+        return horarioAsignaturaRepository.getHorarioA(nombre_plan, semestre, curso, grupo);
     }
 
     public void delete (HorarioAsignatura hAsignatura) {

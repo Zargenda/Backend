@@ -29,7 +29,7 @@ public class HorarioController {
     }
     @GetMapping("/getHorario")
     public List<HorarioAsignatura> getHorario(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
-                                              @RequestParam("curso") String curso, @RequestParam("grupo") String grupo ){
+                                              @RequestParam("curso") int curso, @RequestParam("grupo") int grupo ){
         return horarioService.getHorario(nombrePlan, semestre, curso, grupo);
         
     }

@@ -14,5 +14,5 @@ public interface HorarioRepository extends JpaRepository<Horario, Long> {
             "h.nombre_plan = :nombre_plan AND  h.curso = :curso  AND  h.semestre = :semestre AND " +
             "a.id_padre = h.horario_id AND h.grupo = :grupo   ",nativeQuery = true)
     public List<HorarioAsignatura> getHorarioA(@Param("nombre_plan") String nombre_plan, @Param("semestre")String semestre,
-                                               @Param("curso") String curso, @Param("grupo") String grupo );
+                                               @Param("curso") int curso, @Param("grupo") int grupo );
 }

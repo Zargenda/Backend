@@ -17,5 +17,7 @@ import javax.persistence.Table;
 @Table(name = "Conflicto")
 public class Conflicto {
     private @Id Long id;
+    private Long idReserva1;
+    private Long idReserva2;
     private String descripcion;//Este AULA  esta reservada por AsignaturaA y por Asignatura B a estas HORAS
 }
