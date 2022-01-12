@@ -29,15 +29,6 @@ CREATE TABLE IF NOT EXISTS conflicto(
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS reserva(
-    id integer NOT NULL,
-    fecha DATE,
-    hora integer,
-    aulaId integer,
-    PRIMARY KEY (id)
-);
-
-
 CREATE TABLE IF NOT EXISTS calendario (
   date VARCHAR(255) NOT NULL,
   type VARCHAR(255),
