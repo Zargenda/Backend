@@ -14,4 +14,11 @@ public interface HorarioRepository extends JpaRepository<Horario, Long> {
             "h.nombre_plan = :nombre_plan AND  h.curso = :curso  AND  h.semestre = :semestre",nativeQuery = true)
     public List<Horario> getHorarios(@Param("nombre_plan") String nombre_plan, @Param("semestre")String semestre,
                                                @Param("curso") int curso);
+
+    @Query(value = "SELECT a.horario_id FROM horario h  WHERE " +
+            "h.nombre_plan = :nombre_plan AND  h.curso = :curso  AND  h.semestre = :semestre AND " +
+            " h.grupo = :grupo   ",nativeQuery = true)
+    public Long getHorarioId (@Param("nombre_plan") String nombre_plan, @Param("semestre")String semestre,
+                                               @Param("curso") int curso, @Param("grupo") int grupo );
+
 }

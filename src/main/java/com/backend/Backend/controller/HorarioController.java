@@ -60,7 +60,8 @@ public class HorarioController {
     @GetMapping("/getConflictoId")
     public List<Conflicto> getConflictosById(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
     @RequestParam("curso") int curso, @RequestParam("grupo") int grupo){
-        Long id = horarioService
+        Long id = horarioService.getIdAux(nombrePlan, semestre, curso, grupo);
+        return conflictoRepository.getConflictosByHorarioId(id);
     }
 
     @GetMapping("/getConflictos")
