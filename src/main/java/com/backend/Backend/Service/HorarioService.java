@@ -97,8 +97,8 @@ public class HorarioService {
                  ,hAsing.getFrecuency());
     }
 
-    public Long getIdAux( String nombre_plan, String semestre,int curso,int grupo){
-        return horarioRepository.getHorarioId(nombre_plan,semestre,curso,grupo);
+    public Horario getIdAux( String nombre_plan, String semestre,int curso,int grupo){
+        return horarioRepository.getHorarioByNombrePlanAndCursoAndSemestreAndGrupo(nombre_plan,curso,semestre,grupo);
     }
 
 
