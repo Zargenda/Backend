@@ -20,10 +20,14 @@ public class CalendarioController {
     @Autowired
     private CalendarService calendarService;
 
-    @GetMapping("/IniciarC")
-    public Iterable<Calendario> IniciarC (@RequestParam ("Ini1") String fecha1Ini, @RequestParam ("Fin1") String fecha1Fin, @RequestParam ("Ini2") String fecha2Ini, @RequestParam ("Fin2") String fecha2Fin) throws ParseException {
-        calendarService.iniciarCalendario(fecha1Ini,fecha1Fin,fecha2Ini,fecha2Fin);
-        return calendarService.getCalendario();
+    @PostMapping("/IniciarC")
+    //Todo mirar si los requestybody con el minmo nombre
+    public int IniciarC (@RequestBody String file) throws ParseException, JSONException {
+        JSONObject jsonObj = new JSONObject(file);
+        JSONObject jsonInner = jsonObj.getJSONObject("quarters");
+        System.out.println(jsonInner.toString());
+        calendarService.iniciarCalendario(jsonInner.getString("startFirstQuarter"), jsonInner.getString("endFirstQuarter"), jsonInner.getString("startSecondQuarter"), jsonInner.getString("endSecondQuarter"),jsonInner.getString("startSecondConvocatory"),jsonInner.getString("endSecondConvocatory"));
+        return 200;
     }
 
     @GetMapping("/ObtenerC")
@@ -38,8 +42,9 @@ public class CalendarioController {
     }
 
     @PostMapping("/ModificarC")
-    public Iterable<Calendario> ModificarC (@RequestBody String file) throws JSONException, ParseException {
-        JSONArray jsonArr = new JSONArray(file);
+    public int ModificarC (@RequestBody String file) throws JSONException, ParseException {
+        JSONObject jsonObjt = new JSONObject(file);
+        JSONArray jsonArr = jsonObjt.getJSONArray("total");
         for (int i = 0; i < jsonArr.length(); i++)
         {
             JSONObject jsonObj = jsonArr.getJSONObject(i);
@@ -57,7 +62,7 @@ public class CalendarioController {
                 }
             }
         }
-        return calendarService.getCalendario();
+        return 200;
 
 
     }

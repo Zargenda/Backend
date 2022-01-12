@@ -29,4 +29,6 @@ public class ConflictoService {
     public Optional<Conflicto> findById (Long id) {
         return conflictoRepository.findById(id);
     }
+
+    public List<Conflicto> getConflictoAula (String aula){return conflictoRepository.getConflictoAula(aula);}
 }

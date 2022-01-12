@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,9 +16,13 @@ import java.util.Date;
 @Table(name = "Reserva")
 public class Reserva {
 
-    private @Id long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String fecha;
-    private int horainicio;
-    private int horafin;
+    private Date horainicio;
+    private Date horafin;
     private String aulaId;
+    private String frequency;
 }

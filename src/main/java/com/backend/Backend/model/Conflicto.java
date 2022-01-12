@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -16,8 +14,13 @@ import javax.persistence.Table;
 @ToString
 @Table(name = "Conflicto")
 public class Conflicto {
-    private @Id Long id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String aula;
     private Long idReserva1;
     private Long idReserva2;
-    private String descripcion;//Este AULA  esta reservada por AsignaturaA y por Asignatura B a estas HORAS
+    private String descripcion;//Exite conflicto con el AULA  el DIA por AsignaturaA[horaini,horafin] y por AsignaturaB[horaini,horafin]
 }

@@ -17,10 +17,11 @@ public class CalendarService {
     private String semana = "MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY";
     @Autowired
     private CalendarRepository calendarRepository;
-    public void iniciarCalendario(String date1Ini, String date1Fin,String date2Ini, String date2Fin) throws ParseException {
+    public void iniciarCalendario(String date1Ini, String date1Fin,String date2Ini, String date2Fin, String date3Ini, String date3Fin) throws ParseException {
         if (!calendarRepository.existsById(date1Ini)){
             genCalendaraux(date1Ini, date1Fin);
             genCalendaraux(date2Ini, date2Fin);
+            genCalendaraux(date3Ini, date3Fin);
         }
     }
 
@@ -30,12 +31,10 @@ public class CalendarService {
     public void modFecha(String date,String comment, String Day, String week){
         Optional<Calendario> calendarioOpcional = calendarRepository.findById(date);
         if (calendarioOpcional.isPresent()) {
-            System.out.println("estoy presente");
             Calendario calendario = calendarioOpcional.get();
             if (semana.contains(Day)){
                 calendario.setDay(Day);
                 calendario.setWeek(week);
-                calendario.setComment(comment);
                 calendario.setType("CHANGE_DAY");
             }else if(comment.contains("Eval")){
                 calendario.setComment(comment);
