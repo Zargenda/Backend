@@ -2,6 +2,7 @@ package com.backend.Backend.controller;
 
 import com.backend.Backend.Service.HorarioService;
 import com.backend.Backend.Utils.ExcelReader;
+import com.backend.Backend.model.Conflicto;
 import com.backend.Backend.model.HorarioAsignatura;
 import com.backend.Backend.repository.AsignaturaRepository;
 import com.backend.Backend.repository.AulaRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +69,16 @@ public class mockController {
             System.out.println(ho);
         }
         return horarios;
+    }
+
+    @GetMapping("/getConflictos")
+    public List<Conflicto> getConflictoId(@RequestParam("id") Long horarioId){
+            Conflicto c = new Conflicto(2L, "con jamones");
+        Conflicto d = new Conflicto(2L, "con MAMONES");
+        List<Conflicto> a = new ArrayList<>();
+        a.add(c);
+        a.add(d);
+        return a;
     }
 
 

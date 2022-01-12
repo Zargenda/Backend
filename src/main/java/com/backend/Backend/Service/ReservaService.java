@@ -56,7 +56,7 @@ public class ReservaService {
 
 
     private boolean coinciden (Date refini, Date ini, Date reffin, Date fin){
-        if ( ((!ini.after(refini))&&(!ini.before(reffin)))||((!fin.after(refini))&&(!fin.before(fin)))   ){
+       if(((ini.compareTo(refini)>=0)&&(ini.compareTo(reffin)<0))||((fin.compareTo(refini)>0)&&(fin.compareTo(reffin)<=0))){
             System.out.println("COINCIDE");
             return true;
         }
