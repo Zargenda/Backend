@@ -37,9 +37,10 @@ public class AsignaturasController {
 	}
 
 	@PostMapping("/update")
-	public void updateAsignatura(@RequestBody Asignatura asignatura){
-		asignaturaRepository.updateAsignatura(asignatura.getId(),asignatura.getSemestre(),
-				asignatura.getCurso(),asignatura.getNombre(),asignatura.getGrupo());
+	public String updateAsignatura(@RequestParam("id")Long id, @RequestParam("semester") String semestre, @RequestParam("grade") int curso,
+								 @RequestParam("name") String nombre, @RequestParam("group") int grupo){
+		asignaturaRepository.updateAsignatura(id,semestre,curso,nombre,grupo);
+		return "EXITO";
 	}
 
 	@GetMapping("/getAsignaturas")
