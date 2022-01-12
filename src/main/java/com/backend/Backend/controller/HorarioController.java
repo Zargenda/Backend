@@ -2,8 +2,10 @@ package com.backend.Backend.controller;
 
 
 import com.backend.Backend.Service.HorarioService;
+import com.backend.Backend.model.Conflicto;
 import com.backend.Backend.model.Horario;
 import com.backend.Backend.model.HorarioAsignatura;
+import com.backend.Backend.repository.ConflictoRepository;
 import com.backend.Backend.repository.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,9 @@ import java.util.Map;
 public class HorarioController {
     @Autowired
     HorarioService horarioService;
+    @Autowired
+    ConflictoRepository conflictoRepository;
+
     @PostMapping("/uploadHorario")
     public Map<Horario,List<HorarioAsignatura>> nuevoHorario(@RequestBody  Map<Horario,List<HorarioAsignatura>> body) {
        //return horarioService.create(horario);
@@ -50,6 +55,11 @@ public class HorarioController {
             return horarioService.create(horario, json.horarioAsignaturas);
         }
 
+    }
+
+    @GetMapping("/getConflictos")
+    public List<Conflicto> getConflictoId(@RequestParam("id") Long horarioId){
+        return conflictoRepository.getConflictosByHorarioId(horarioId);
     }
 
 

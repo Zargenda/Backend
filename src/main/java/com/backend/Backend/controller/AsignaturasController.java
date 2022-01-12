@@ -28,23 +28,25 @@ public class AsignaturasController {
 		return asignaturaRepository.saveAll(ExcelReader.leerAsignaturas(file)) ;
 	}
 
+
+
 	@PostMapping("/delete")
-	public String  prueba3(){
-		asignaturaRepository.deleteAll();
-		//return asignaturaRepository.saveAll(ExcelReader.leerAsignaturas(file)) ;
+	public String  deleteAsignatura(@RequestParam("id") Long id){
+		asignaturaRepository.deleteById(id);
 		return "EXITO";
 	}
 
+	@PostMapping("/update")
+	public void updateAsignatura(@RequestBody Asignatura asignatura){
+		asignaturaRepository.updateAsignatura(asignatura.getId(),asignatura.getSemestre(),
+				asignatura.getCurso(),asignatura.getNombre(),asignatura.getGrupo());
+	}
 
 	@GetMapping("/getAsignaturas")
 	public List<Asignatura> getAsignaturas(){
 		return asignaturaRepository.findAll();
 	}
 
-	@PostMapping("/updateAsignatura")
-	public Asignatura updateAsignatura(@RequestBody Asignatura asignatura){
-		asignaturaRepository
-	}
 
 	@GetMapping("/getAreas")
 	public List<String> getAreas(){

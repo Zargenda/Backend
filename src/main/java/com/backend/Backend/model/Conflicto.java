@@ -18,9 +18,11 @@ public class Conflicto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String aula;
-    private Long idReserva1;
-    private Long idReserva2;
+    private Long horarioId;
     private String descripcion;//Exite conflicto con el AULA  el DIA por AsignaturaA[horaini,horafin] y por AsignaturaB[horaini,horafin]
+
+    public Conflicto(Long horarioId, String descripcion) {
+        this.horarioId = horarioId;
+        this.descripcion = descripcion;
+    }
 }

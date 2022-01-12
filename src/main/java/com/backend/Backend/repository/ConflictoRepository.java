@@ -12,4 +12,6 @@ public interface ConflictoRepository extends JpaRepository<Conflicto, Long> {
     @Query(value = "SELECT DISTINCT a FROM Conflicto a WHERE " +
             "a.aula = :aula",nativeQuery = true)
     public List<Conflicto> getConflictoAula(@Param("aula") String aula);
+    public List<Conflicto> getConflictosByHorarioId(Long id);
+    public int deleteConflictoByHorarioId(Long id);
 }

@@ -15,6 +15,9 @@ public class ConflictoService {
     private ConflictoRepository conflictoRepository;
 
     public Conflicto create (Conflicto conflicto) {
+
+
+
         return conflictoRepository.save(conflicto);
     }
 
