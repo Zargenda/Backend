@@ -22,23 +22,28 @@ public class ReservaService {
     @Autowired
     private ConflictoRepository conflictoRepository;
 
+    //Funcion que dad unha reserva la almacena el la DB y llama a generarConflictos
     public Reserva create (Reserva reserva) {
         generarConflictos(reserva);
         return reservaRepository.save(reserva);
     }
 
+    //Funcion que devuelve todas las reservas
     public List<Reserva> getAllReservas (){
         return reservaRepository.findAll();
     }
 
+    //Funcion que dada una reserva la elimina de la DB
     public void delete (Reserva reserva) {
         reservaRepository.delete(reserva);
     }
 
+    //Funcion que devuelve una reserva cuya id sea la pasada como parametro
     public Optional<Reserva> findById (Long id) {
         return reservaRepository.findById(id);
     }
 
+    //Funcion que comprueba si existe comflicto y en caso afirmativo lo registra en la DV
     private void generarConflictos (Reserva reserva){
         String fecha = reserva.getFecha();
         List<Conflicto> conflictos = new ArrayList<Conflicto>();

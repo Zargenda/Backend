@@ -20,6 +20,7 @@ public class CalendarioController {
     @Autowired
     private CalendarService calendarService;
 
+    //Endpoint del API rest que inicia el calendario a partir de las 4 fechas pasadas en el JSON
     @PostMapping("/IniciarC")
     //Todo mirar si los requestybody con el minmo nombre
     public int IniciarC (@RequestBody String file) throws ParseException, JSONException {
@@ -30,17 +31,21 @@ public class CalendarioController {
         return 200;
     }
 
+    //Endpoint del API rest que devuelve el calendario guardado en BD
     @GetMapping("/ObtenerC")
     public Iterable<Calendario> ObtenerC(){
         return calendarService.getCalendario();
     }
 
+    //Endpoint del API rest que elimina el calendario en BD actual
     @PostMapping("/ResetC")
     public int ResetC () {
         calendarService.dropCalendario();
         return 200;
     }
 
+    //Endpoint del API rest que permite la modificacion del calendario guardado en BD a partir de la lista de cambios
+    //que se encuentra en el JSONArray
     @PostMapping("/ModificarC")
     public int ModificarC (@RequestBody String file) throws JSONException, ParseException {
         JSONObject jsonObjt = new JSONObject(file);
@@ -48,31 +53,19 @@ public class CalendarioController {
         for (int i = 0; i < jsonArr.length(); i++)
         {
             JSONObject jsonObj = jsonArr.getJSONObject(i);
-            if (jsonObj.has("endDate")){
+            System.out.println(jsonObj.toString());
+            if (!jsonObj.isNull("endDate")) {
                 calendarService.modificarPeriodo(jsonObj);
             }else{
-                System.out.println("Fecha sola");
                 String[] aux;
-                if (jsonObj.has("day")){
-                    aux=(jsonObj.getString("date")).split("T");
-                    calendarService.modFecha(aux[0],jsonObj.getString("comment"),jsonObj.getString("day"),jsonObj.getString("week"));
-                }else {
-                    aux = (jsonObj.getString("startDate")).split("T");
-                    calendarService.modFecha(aux[0], jsonObj.getString("comment"), "", "");
-                }
+                aux = (jsonObj.getString("startDate")).split("T");
+                calendarService.modFecha(aux[0], jsonObj.getString("comment"), jsonObj.getString("comment"), "");
+
             }
         }
         return 200;
 
 
     }
-    @PostMapping("/testF")
-    public Date testF (@RequestParam("Fecha") String Fecha ) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        sdf.applyPattern("yyyy-MM-dd");
-        return sdf.parse(Fecha);
-    }
-
-
 
 }

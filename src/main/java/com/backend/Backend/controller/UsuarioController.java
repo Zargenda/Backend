@@ -16,14 +16,16 @@ public class UsuarioController {
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
-
+    //Endpoint del API rest que permite el login en la aplicaion a traves de dos parametros [email,pass] que se envian a
+    //traves de un JSON
     @PostMapping("/login")
     public int login(@RequestBody String file) throws ParseException, JSONException {
         JSONObject jsonObj = new JSONObject(file);
         JSONObject jsonInner = jsonObj.getJSONObject("loginInfo");
         return usuarioService.loginUsuario(jsonInner.getString("email"),jsonInner.getString("pass"));
     }
-
+    //Endpoint del API rest que permite el registro en la aplicaion a traves de dos parametros [email,pass] que se envian a
+    //traves de un JSON
     @PostMapping("/registro")
     public boolean registro(@RequestBody String file) throws ParseException, JSONException {
         JSONObject jsonObj = new JSONObject(file);

@@ -24,6 +24,7 @@ public class HorarioController {
     @Autowired
     ConflictoRepository conflictoRepository;
 
+    //Endpoint del API rest que sirve para guardar los horarios generados en el front
     @PostMapping("/uploadHorario")
     public Map<Horario,List<HorarioAsignatura>> nuevoHorario(@RequestBody  Map<Horario,List<HorarioAsignatura>> body) {
        //return horarioService.create(horario);
@@ -33,6 +34,7 @@ public class HorarioController {
         List<HorarioAsignatura> value = entry.getValue();
         return  horarioService.create(key,value);
     }
+    //Endpoint del API rest que devuelve un horario dado el plan, semestre, curso y grupo
     @GetMapping("/getHorario")
     public List<HorarioAsignatura> getHorario(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
                                               @RequestParam("curso") int curso, @RequestParam("grupo") int grupo ){
@@ -40,6 +42,7 @@ public class HorarioController {
         
     }
 
+    //Endpoint del API rest que devuelve un horario dado el plan, semestre, curso y grupo
     @PostMapping("/uploadHorarioA")
     public Map<Horario,List<HorarioAsignatura>> prueba(@RequestBody  JsonHorario json) {
         if(json.id != 0){
@@ -57,6 +60,7 @@ public class HorarioController {
 
     }
 
+    //Endpoint del API rest que devuelve todos los conflictos de un horario determinado
     @GetMapping("/getConflictoId")
     public List<Conflicto> getConflictosById(@RequestParam("nombrePlan") String nombrePlan,@RequestParam("semestre") String semestre,
     @RequestParam("curso") int curso, @RequestParam("grupo") int grupo){
@@ -65,6 +69,7 @@ public class HorarioController {
         return conflictoRepository.getConflictosByHorarioId(id.getHorarioId());
     }
 
+    //Endpoint del API rest que devuelve todos los conflictos que se han generado
     @GetMapping("/getConflictos")
     public List<Conflicto> getConflictoId(){
         return conflictoRepository.findAll();

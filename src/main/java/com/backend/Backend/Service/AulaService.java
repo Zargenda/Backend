@@ -12,18 +12,23 @@ import java.util.Optional;
 public class AulaService {
     @Autowired
     private AulaRepository aulaRepository;
+
+    //Dada un aula la almacena el la DB
     public Aula create (Aula aula) {
         return aulaRepository.save(aula);
     }
 
+    //Devuelve todas las aulas almacenadas en la DB
     public List<Aula> getAllAulas (){
         return aulaRepository.findAll();
     }
 
+    //Dada un aula la elimina de la DB
     public void delete (Aula aula) {
         aulaRepository.delete(aula);
     }
 
+    //Dada un id devuelve el aula con ese id
     public Optional<Aula> findById (Long id) {
         return aulaRepository.findById(id);
     }

@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+//Clase de mock para no paralizar al front
 @RestController
 @RequestMapping("/mock")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})

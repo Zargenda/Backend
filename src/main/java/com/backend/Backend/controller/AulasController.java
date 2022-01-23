@@ -16,16 +16,19 @@ import java.util.List;
 public class AulasController {
     @Autowired
     AulaRepository aulaRepository;
+    //Endpoint del API rest utilizado para subir el fichero excel correspondiente a las aulas
     @PostMapping("/uploadAula")
     public List<Aula>  prueba2(@RequestParam("file") MultipartFile file){
         aulaRepository.deleteAll();
         return aulaRepository.saveAll(ExcelReader.leerAulas(file));
     }
+    //Endpoint del API rest que devuelve todas las aulas guardadas en BD
     @GetMapping("/allAulas")
     public List<Aula> allAulas(){
         return aulaRepository.findAll();
     }
 
+    //Endpoint del API rest que devuelve las aulas de un edificio
     @GetMapping("/getAulas")
     public List<String> getAulas(@RequestParam("edificio") int edificio){
         return aulaRepository.getAulasbyEdificio(edificio);
