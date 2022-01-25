@@ -23,19 +23,24 @@ import java.util.Locale;
 public class ExcelReader {
 
 
-    private static final String FILE_NAME = "com/backend/Backend/listado207.xlsx";
+    private static final String FILE_NAME = "listado207.xlsx";
+    private static final String FILE_NAME_AULAS = "aulas.xlsx";
     public static  void main(String[] args) {
 
         leerAsignaturas();
 
     }
+
+    //Columnas del listado 207
     private static final int[] POSICIONES_COLUMNAS = {3,4,6,11,17,18,23,5,30,12} ;
+
+
+    //Lee el listado 207 de un archivo local y devuelve una Lista de las asignaturas;
     public static List<Asignatura>  leerAsignaturas() {
         try
         {
 
-
-            File file = new File("listado207.xlsx");
+            File file = new File(FILE_NAME);
             System.out.println(file.getAbsolutePath());
             //Create Workbook instance holding reference to .xlsx file
             Workbook workbook =WorkbookFactory.create(file);
@@ -50,7 +55,7 @@ public class ExcelReader {
         }
         return null;
     }
-
+    //Lee el listado 207 de un archivo MultiPartFile y devuelve una Lista de las asignaturas
     public static  List<Asignatura> leerAsignaturas(MultipartFile file) {
         try
         {
@@ -71,6 +76,7 @@ public class ExcelReader {
         return null;
     }
 
+    //Algoritmo que lee lista de asignaturas dado XSSFSheet
     private static List<Asignatura> leerSheetAsignaturas(XSSFSheet sheet){
         //Create Workbook instance holding reference to .xlsx file
         List<Asignatura> result = new ArrayList<>();
@@ -110,11 +116,11 @@ public class ExcelReader {
 
 
 
-
+    //Lee un excel de aulas guardado de forma local y devuelve una Lista de las aulas
     public static List<Aula> leerAulas() {
         try
         {
-            File file = new File("aulas.xlsx");
+            File file = new File(FILE_NAME_AULAS);
             System.out.println(file.getAbsolutePath());
             //Create Workbook instance holding reference to .xlsx file
             Workbook workbook =WorkbookFactory.create(file);
@@ -127,7 +133,7 @@ public class ExcelReader {
         }
         return null;
     }
-
+    //Lee un excel de aulas guardado de  un archivo MultiPartFile y devuelve una Lista de las aulas
     public static List<Aula> leerAulas(MultipartFile file){
         try
         {
@@ -149,7 +155,7 @@ public class ExcelReader {
         }
         return null;
     }
-
+    //Algoritmo que lee lista de aulas  dado XSSFSheet
     private static List<Aula> leerSheetAulas(XSSFSheet sheet){
         List<Aula> result = new ArrayList<>();
         Iterator<Row> rowIterator = sheet.iterator();
