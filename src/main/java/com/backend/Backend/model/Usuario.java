@@ -16,6 +16,8 @@ public class Usuario {
     private String email;
     private Boolean admin;
 
+    public Usuario() {}
+
     public Usuario(String email, String contrasena) {
         this.contrasena = contrasena;
         this.email = email;
@@ -35,22 +37,9 @@ public class Usuario {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(contrasena, usuario.contrasena) && Objects.equals(email, usuario.email) && Objects.equals(admin, usuario.admin);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, contrasena, email, admin);
-    }
-
-    @Override
     public String toString() {
         return "Usuario{" +
-                "id=" + id +
+                "contrasena='" + contrasena + '\'' +
                 ", email='" + email + '\'' +
                 ", admin=" + admin +
                 '}';
