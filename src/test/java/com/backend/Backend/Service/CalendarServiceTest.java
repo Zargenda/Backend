@@ -34,7 +34,6 @@ class CalendarServiceTest {
         String DC = "[Calendario{date='2021-09-15', type='SCHOOL', day='X', week='0', comment='INICIO_CUATRIMESTRE'}, Calendario{date='2021-09-16', type='SCHOOL', day='J', week='0', comment='null'}, Calendario{date='2021-09-17', type='SCHOOL', day='V', week='0', comment='INICIO_CUATRIMESTRE'}, Calendario{date='2021-09-18', type='FESTIVE', day='S', week='', comment='null'}, Calendario{date='2021-09-19', type='FESTIVE', day='D', week='', comment='INICIO_CUATRIMESTRE'}, Calendario{date='2021-09-20', type='SCHOOL', day='L', week='a1', comment='null'}]";
         assertEquals(DB.toString(),DC);
     }
-
     @Test
     void dropCalendario() {
         calendarService.dropCalendario();
@@ -42,7 +41,6 @@ class CalendarServiceTest {
         String DC = "[]";
         assertEquals(DB.toString(),DC);
     }
-
     @Test
     void modFecha() throws ParseException {
         calendarService.iniciarCalendario("2021-09-15T10:26:48.910Z","2021-09-16T10:26:48.910Z","2021-09-17T10:26:48.910Z","2021-09-18T10:26:48.910Z","2021-09-19T10:26:48.910Z","2021-09-20T10:26:48.910Z");
@@ -52,7 +50,6 @@ class CalendarServiceTest {
         assertEquals(DB.toString(),DC);
 
     }
-
     @Test
     void modificarPeriodo() throws ParseException, JSONException {
         calendarService.iniciarCalendario("2021-09-15T10:26:48.910Z","2021-09-16T10:26:48.910Z","2021-09-17T10:26:48.910Z","2021-09-18T10:26:48.910Z","2021-09-19T10:26:48.910Z","2021-09-25T10:26:48.910Z");
