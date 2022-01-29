@@ -1,4 +1,9 @@
 package com.backend.Backend.Service;
+/*
+Service de horario el cual controla toda la lógica del negocio de la creación,modificación y eliminacion,esta usa tanto
+los repositorios de Reservas y Conflictos
+ */
+
 
 
 import com.backend.Backend.model.Horario;
@@ -28,7 +33,7 @@ public class HorarioService {
     private ConflictoRepository conflictoRepository;
 
 
-
+    //Dado una horario y una lista de horas con sus asignaturas crea una relacion entre la lista y el horario
     public Map<Horario,List<HorarioAsignatura>> create (Horario horario,List<HorarioAsignatura> lista) {
         //Guarda horario
         Map<Horario,List<HorarioAsignatura>> result = new HashMap<>();
@@ -41,7 +46,7 @@ public class HorarioService {
         result.put(horario,lista);
         return result;
     }
-
+    //Borra la anterior lista de horas de las asignaturas y guarda una nueva
     public List<HorarioAsignatura> onUpdate(List<HorarioAsignatura> asigns,Long idPadre){
            if(horarioAsignaturaRepository.deleteHorarioAsignaturaByIdPadre(idPadre) > 0 ) {
                for(HorarioAsignatura asign : asigns){
@@ -55,26 +60,28 @@ public class HorarioService {
            }
           return null;
     }
-
+    //Obtiene todos los horarios
     public List<HorarioAsignatura> getAllHorarios (){
         return horarioAsignaturaRepository.findAll();
     }
-
+    //Obtiene un horario dado su id
     public List <HorarioAsignatura> getHorariosPlan(Long idPlan){
         return horarioAsignaturaRepository.horarioPlan(idPlan);
     }
+    //Obtiene un horario dado su nombre del plan,semestre,curso y grupo
     public List<HorarioAsignatura> getHorario (String nombre_plan,String semestre,int curso, int grupo){
         return horarioAsignaturaRepository.getHorarioA(nombre_plan, semestre, curso, grupo);
     }
-
+    //Borra una hora de una asignatura
     public void delete (HorarioAsignatura hAsignatura) {
         horarioAsignaturaRepository.delete(hAsignatura);
     }
-
+    //Obtiene una hora de una asignatura si existe
     public Optional<HorarioAsignatura> findById (Long id) {
         return horarioAsignaturaRepository.findById(id);
     }
 
+    //Se encarga de gestionar las reservas de las aulas dado un horario ademas de comprobar conflictos
     private Reserva asignaturaReserva(HorarioAsignatura hAsing){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String tm =sdf.format(hAsing.getStartTime());
@@ -96,7 +103,7 @@ public class HorarioService {
          return new Reserva(hAsing.getIdPadre(),hAsing.getSubject(),dia, hAsing.getStartTime(),hAsing.getEndTime(),hAsing.getDescription()
                  ,hAsing.getFrecuency());
     }
-
+    //btiene un horario dado su nombre del plan,semestre,curso y grupo
     public Horario getIdAux( String nombre_plan, String semestre,int curso,int grupo){
         return horarioRepository.getHorarioByNombrePlanAndCursoAndSemestreAndGrupo(nombre_plan,curso,semestre,grupo);
     }
